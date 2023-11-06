@@ -309,25 +309,24 @@ To show that in a mathematical way:
 
 Lets say that our target numbers is an array called `target`, and that our string is $a_1, a_2, a_3, a_4, a_5$
 
-The code will check if:
+The code will check if the following system of equations hold.
 
 <br>
 
-$2a_1 + 13a_2 + 31a_3 + 53a_4 + 73a_5 = target_1$
+$$2a_1 + 13a_2 + 31a_3 + 53a_4 + 73a_5 = target_1$$
 
-$3a_1 + 17a_2 + 37a_3 + 59a_4 + 79a_5 = target_2$
+$$3a_1 + 17a_2 + 37a_3 + 59a_4 + 79a_5 = target_2$$
 
-$5a_1 + 19a_2 + 41a_3 + 61a_4 + 83a_5 = target_3$
+$$5a_1 + 19a_2 + 41a_3 + 61a_4 + 83a_5 = target_3$$
 
-$7a_1 + 23a_2 + 43a_3 + 67a_4 + 89a_5 = target_4$
+$$7a_1 + 23a_2 + 43a_3 + 67a_4 + 89a_5 = target_4$$
 
-$11a_1 + 29a_2 + 47a_3 + 71a_4 + 97a_5 = target_5$
+$$11a_1 + 29a_2 + 47a_3 + 71a_4 + 97a_5 = target_5$$
 
 <br>
 
 
-Or to write it in a coefficient matrix:
-
+Recall such system can also be written as a coefficient matrix, namely
 
 <br>
 
