@@ -392,7 +392,7 @@ for j in range(len(inp)):
 
 Here is the third step code:
 
-```c
+```cpp
  for ( k = 5; ; ++k )
   {
     if ( k >= std::vector<unsigned char>::size(xorresult) )

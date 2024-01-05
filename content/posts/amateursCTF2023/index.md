@@ -164,7 +164,7 @@ i is stored at `rbp-0x4`, name is stored at `rbp-0x20`, so we need `0x20-0x4=28`
 Now, what should we change it to?
 When printing `name` to us, it uses this assembly lines to get the current character:
 
-```
+```s
 <+119>:	mov    eax,DWORD PTR [rbp-0x4]
 <+124>:	movzx  eax,BYTE PTR [rbp+rax*1-0x20]
 ```
@@ -359,7 +359,7 @@ And lastly, it will allocate a memory for our stack, in address 0x13371337000.
 
 Now it will read our assembly code, run this code:
 
-```asm
+```s
     asm volatile(
         ".intel_syntax noprefix\n"
         "mov rbx, 0x13371337\n"
@@ -658,7 +658,6 @@ for j in range(flag_size):
 			flag += '.'
 	print(flag, j)
 	send("o=o+p") #o will increament each run
-
 ```
 
 
