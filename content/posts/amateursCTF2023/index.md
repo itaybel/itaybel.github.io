@@ -88,7 +88,7 @@ Input is taken using the `gets` function, which is known as an unsafe function, 
 Best thing to do when solving pwn chals, is to use GDB. lets run gdb with the 
 challenge binary, and disassemble main:
 
-```
+```gdb
 pwndbg> disassemble main
 Dump of assembler code for function main:
    0x0000000000401186 <+0>:	push   rbp
@@ -136,7 +136,6 @@ Dump of assembler code for function main:
    0x0000000000401237 <+177>:	leave  
    0x0000000000401238 <+178>:	ret    
 End of assembler dump.
-pwndbg> 
 ```
 We can understand a few things from this code.
 
@@ -154,7 +153,7 @@ We can also see in line `main+100`, that the code sets `rdi` to be `rbp-0x60`, a
 
 The stack will look somehting like this:
 
-![image](https://github.com/Itay212121/Weekly-CTF/assets/56035342/cedd3c85-8c71-4dbf-9197-4c9a508bb5dc)
+![image](https://github.com/itaybel/Weekly-CTF/assets/56035342/cedd3c85-8c71-4dbf-9197-4c9a508bb5dc)
 
 Now, we know enough to be able to exploit this.
 

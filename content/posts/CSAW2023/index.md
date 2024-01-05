@@ -345,7 +345,7 @@ In order to replicate it in python. we need the big `data` array.
 I used GDB (didn't ran anything) , and just read all the memory of data, and put it in a file called `vector`:
 
 
-```
+```gdb
 $ head vector 
 0x403740:	0x0000003c	0x00000064	0x00000058	0x00000029
 0x403750:	0x0000005a	0x00000062	0x0000002e	0x00000047
@@ -439,7 +439,7 @@ for j in range(len(inp)):
 
 Lastly , here is the final step:
 
-```py
+```cpp
  std::__cxx11::basic_string<char,std::char_traits<char>,std::allocator<char>>::basic_string<std::allocator<char>>(
     v26,
     "flag{ph3w...u finaLly g0t it! jump into cell wHen U g3t t0 the next cha11}",
@@ -464,7 +464,7 @@ Lastly , here is the final step:
       goto LABEL_19;
     }
 ```
-It will basiclly just compare each byte of `xorrandom`, with the string `"flag{ph3w...u finaLly g0t it! jump into cell wHen U g3t t0 the next cha11}"`, and if everything is correct,
+It will basiclly just compare each byte of `xorrandom`, with the string `flag{ph3w...u finaLly g0t it! jump into cell wHen U g3t t0 the next cha11}`, and if everything is correct,
 it means that our input is the flag!. but, how can we reverse all of these steps to retrieve the flag?
 
 We don't really need to do it! since all the manipluation on our input was byte-byte with predefined data, we can just bruteforce the input byte-byte, and if `xorresult` of our input is `target`, we know that the new character is correct
