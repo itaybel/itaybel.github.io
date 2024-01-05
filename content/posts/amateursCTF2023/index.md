@@ -88,7 +88,7 @@ Input is taken using the `gets` function, which is known as an unsafe function, 
 Best thing to do when solving pwn chals, is to use GDB. lets run gdb with the 
 challenge binary, and disassemble main:
 
-```gdb
+```s
 pwndbg> disassemble main
 Dump of assembler code for function main:
    0x0000000000401186 <+0>:	push   rbp
