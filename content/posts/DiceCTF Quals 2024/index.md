@@ -17,7 +17,7 @@ toc:
   enable: true
 ---
 
-Writeups to baby-talk,hop,boogie-woogie in DiceCTF Quals.
+Writeups to baby-talk,boogie-woogie in DiceCTF Quals.
 <!--more-->
 
 ## Overview
