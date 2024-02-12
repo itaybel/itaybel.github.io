@@ -151,7 +151,7 @@ These binaries can be ran by going to `localhost:8080/camera-cgi/name`, so maybe
 
 Now, we have looked at most of our attacking surface, and found nothing. But lets not forget that the binaries are using libs, which can also be vulnarable.
 
-```
+```bash
 /pwn/party/_player.cpio.extracted/cpio-root/bin$ readelf -a webd  | grep NEEDED
  0x00000001 (NEEDED)                     Shared library: [libev.so.4]
  0x00000001 (NEEDED)                     Shared library: [libpthread.so.0]
