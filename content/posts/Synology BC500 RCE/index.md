@@ -18,7 +18,7 @@ toc:
   enable: true
 ---
 
-Deep dive into an n-day in Synology BC500 camera. this was in the realworld ctf, and I found it really interseting.
+Deep dive into an n-day in Synology BC500 camera. this was in the realworld ctf, and I found it really interesting.
 <!--more-->
 
 ## Overview
@@ -35,7 +35,7 @@ Now we are ready to start the `run.sh` binary, which will open port 8080:
 
 ![login](image.png)
 
-Logging in, shows the camera version:
+Logging in, we can see the cameras version
 
 ![version](image-1.png)
 
@@ -47,14 +47,14 @@ Now we can just bindiff our binaries with the patched version, and see if there 
 
 Now this part was kind of annoying, so thanks to one of my teamates `fredd` for doing most of it.
 
-We can find all the firmwares `.bin` files in synology original arhieve: https://archive.synology.com/download/Firmware/Camera/BC500
+We can find all the firmwares `.bin` files in synology original [archive](https://archive.synology.com/download/Firmware/Camera/BC500)
 
 Then, we will download version `1.0.7-0298`, which is the next one after the vulnerable one.
 
-Then , we tried to run `binwalk -e Synology_BC500_1.0.7_0298.sa.bin`. we got tons extracted files, which are most likely false positives.
+Trying to run `binwalk -e Synology_BC500_1.0.7_0298.sa.bin`, I got tons extracted files, which are most likely false positives.
 
-I searched for something interesting, using `file *`, and found `238C8C: UBI image, version 1`
-The UBI init images, named ubi-init, contain the systemd initialization system, making them useful for building images in which you want to run systemd services, such as a web server or file server.
+Searching through the files, I found `238C8C: UBI image, version 1`
+The UBI init images contain the systemd initialization system, making them useful for building images in which you want to run systemd services, such as a web server or file server.
 
 We can use a tool like [ubi_reader](https://github.com/onekey-sec/ubi_reader), to extract the firmware.
 
@@ -87,7 +87,7 @@ We have everything we need. now its time for the actual bug searching process.
 
 Lets start by seeing all the running processes on the machine:
 
-```
+```bash
 > ps aux
 
 PID   USER     TIME  COMMAND
